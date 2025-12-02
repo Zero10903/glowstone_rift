@@ -6,8 +6,9 @@ namespace Player.Input
 {
     public class PlayerInputHandler : MonoBehaviour
     {
-        public Vector2 MoveInput { get; private set; }
         public event Action OnJump;
+        public bool IsJumpPressed { get; private set; }
+        public Vector2 MoveInput { get; private set; }
 
         public void OnMoveInput(InputAction.CallbackContext context)
         {
@@ -16,6 +17,14 @@ namespace Player.Input
 
         public void OnJumpInput(InputAction.CallbackContext context)
         {
+            if (context.started)
+            {
+                IsJumpPressed = true;
+            }
+            if (context.canceled)
+            {
+                IsJumpPressed = false;
+            }
             if (context.performed)
             {
                 OnJump?.Invoke();
