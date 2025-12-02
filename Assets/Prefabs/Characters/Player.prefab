@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2475274214169177396}
   - component: {fileID: -5764635258174801733}
   - component: {fileID: 8473325163040402535}
+  - component: {fileID: 1032193217445611975}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -197,6 +198,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 262523e9-d719-40ac-acd5-64a8cea114c8
     m_ActionName: 'Player/Movement[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -5764635258174801733}
+        m_TargetAssemblyTypeName: Player.Input.PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnJumpInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d2bc6a3e-3bdd-4e0b-8031-916d34e15204
+    m_ActionName: 'Player/Jump[/XInputControllerWindows/buttonSouth]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -227,3 +244,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 5
+--- !u!114 &1032193217445611975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4864994839283287405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a03603dd8d21a43a36156887d69d8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 5
