@@ -1,6 +1,7 @@
 using System;
 using Player.Input;
 using UnityEngine;
+using Utils;
 
 namespace Player.Movement
 {
@@ -10,11 +11,13 @@ namespace Player.Movement
         
         private PlayerInputHandler _playerInputHandler;
         private Rigidbody2D _rb;
+        private GroundChecker _groundChecker;
 
         private void Awake()
         {
             _playerInputHandler = GetComponent<PlayerInputHandler>();
             _rb = GetComponent<Rigidbody2D>();
+            _groundChecker = GetComponent<GroundChecker>();
         }
 
         void OnEnable()
@@ -29,8 +32,11 @@ namespace Player.Movement
 
         private void TryJump()
         {
-            Debug.Log("Jump");
-            _rb.linearVelocityY = jumpForce;
+            if (_groundChecker.IsGrounded)
+            {
+                Debug.Log("Jump");
+                _rb.linearVelocityY = jumpForce;
+            }
         }
     }
 }
