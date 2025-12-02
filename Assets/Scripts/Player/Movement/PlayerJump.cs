@@ -7,7 +7,16 @@ namespace Player.Movement
 {
     public class PlayerJump : MonoBehaviour
     {
-        [SerializeField] private float jumpForce = 5;
+        [Header("Jump Values")]
+        [SerializeField] private float jumpForce = 5f;
+
+        [Header("Coyote Time")]
+        [SerializeField] private float coyoteTime = 0.1f;
+        private float _coyoteTimer;
+
+        [Header("Jump Buffer")]
+        [SerializeField] private float jumpBufferTime = 0.1f;
+        private float _jumpBufferTimer;
         
         private PlayerInputHandler _playerInputHandler;
         private Rigidbody2D _rb;
@@ -22,21 +31,61 @@ namespace Player.Movement
 
         void OnEnable()
         {
-            _playerInputHandler.OnJump += TryJump;
+            _playerInputHandler.OnJump += BufferJump;
         }
         
         void OnDisable()
         {
-            _playerInputHandler.OnJump -= TryJump;
+            _playerInputHandler.OnJump -= BufferJump;
         }
-
-        private void TryJump()
+        
+        private void Update()
+        {
+            HandleCoyoteTime();
+            HandleJumpBuffer();
+        }
+        
+        // ================
+        // COYOTE TIME
+        // ================
+        private void HandleCoyoteTime()
         {
             if (_groundChecker.IsGrounded)
+                _coyoteTimer = coyoteTime;  
+            else
+                _coyoteTimer -= Time.deltaTime;
+        }
+        
+        // ================
+        // JUMP BUFFER
+        // ================
+        private void BufferJump()
+        {
+            _jumpBufferTimer = jumpBufferTime;
+        }
+
+        private void HandleJumpBuffer()
+        {
+            if (_jumpBufferTimer > 0)
             {
-                Debug.Log("Jump");
-                _rb.linearVelocityY = jumpForce;
+                TryJump();
+                _jumpBufferTimer -= Time.deltaTime;
             }
+        }
+
+        // ================
+        // JUMP
+        // ================
+        private void TryJump()
+        {
+            if (_coyoteTimer <= 0) return;
+            
+            // jump
+            _rb.linearVelocityY = jumpForce;
+            
+            // Reset timers after jump
+            _coyoteTimer = 0;
+            _jumpBufferTimer = 0;
         }
     }
 }
