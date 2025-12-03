@@ -7,7 +7,7 @@ namespace Health
     public class HealthSystem : MonoBehaviour, IDamageable, IHealable,  IKillable
     {
         [Header("Health Settings")]
-        [SerializeField] protected float maxHealth;
+        [SerializeField] protected float maxHealth = 100f;
         private float _currentHealth;
         
         // Only read variables
