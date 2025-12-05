@@ -7,6 +7,7 @@ namespace Player.Input
     public class PlayerInputHandler : MonoBehaviour
     {
         public event Action OnJump;
+        public event Action OnMeleeAttack;
         public bool IsJumpPressed { get; private set; }
         public Vector2 MoveInput { get; private set; }
 
@@ -28,6 +29,15 @@ namespace Player.Input
             if (context.performed)
             {
                 OnJump?.Invoke();
+            }
+        }
+
+        public void OnMeleeAttackInput(InputAction.CallbackContext context)
+        {
+            if (context.started)
+            {
+                Debug.Log("Attack input");
+                OnMeleeAttack?.Invoke();
             }
         }
     }
