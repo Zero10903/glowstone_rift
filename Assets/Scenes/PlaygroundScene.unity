@@ -539,14 +539,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1400147167322825357, guid: ac87fbc2c7b40ed4a93931a7457919df, type: 3}
-      propertyPath: fallGravityMultiplier
-      value: 4.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1400147167322825357, guid: ac87fbc2c7b40ed4a93931a7457919df, type: 3}
-      propertyPath: lowJumpGravityMultiplier
-      value: 4.5
-      objectReference: {fileID: 0}
     - target: {fileID: 3040563727265106180, guid: ac87fbc2c7b40ed4a93931a7457919df, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

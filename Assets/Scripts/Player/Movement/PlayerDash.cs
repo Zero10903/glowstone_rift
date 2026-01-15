@@ -1,21 +1,26 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using Player.Gravity;
 using Player.Input;
+using Utils;
 
 namespace Player.Movement
 {
     public class PlayerDash : MonoBehaviour, IMovementBlocker, IGravityBlocker
     {
+        [Header("Dash Settings")]
         [SerializeField] private float dashForce = 20f;
         [SerializeField] private float dashDuration = 0.2f;
+        [SerializeField] private float dashCooldown = 0.6f;
+        
         private float _originalGravity;
-        private bool _canDash;
         private bool _isDashing;
         public bool IsMovementBlocked => _isDashing;
         public bool IsGravityBlocked => _isDashing;
         
         private IMovementState _movementState;
+        private Cooldown _cooldown;
         
         private PlayerInputHandler _inputHandler;
         private Rigidbody2D _rb;
@@ -26,8 +31,9 @@ namespace Player.Movement
             _rb = GetComponent<Rigidbody2D>();
             
             _movementState = GetComponent<IMovementState>();
-            
-            _canDash = true;
+
+             _cooldown = new Cooldown(dashCooldown);
+             
             _isDashing = false;
         }
 
@@ -43,15 +49,15 @@ namespace Player.Movement
 
         private void HandleDash()
         {
-            if (!_canDash || _isDashing || !_movementState.IsOnMovement)
+            if (!_cooldown.IsReady || _isDashing || !_movementState.IsOnMovement)
                 return;
 
+            _cooldown.Use();
             StartCoroutine(DashRoutine());
         }
 
         private IEnumerator DashRoutine()
         {
-            _canDash = false;
             _isDashing = true;
             
             _originalGravity = _rb.gravityScale;
@@ -66,7 +72,6 @@ namespace Player.Movement
             _rb.linearVelocityX = 0f;
 
             _isDashing = false;
-            _canDash = true;
         }
     }
 }
