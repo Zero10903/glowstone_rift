@@ -14,7 +14,6 @@ namespace Player.Movement
         [SerializeField] private float dashDuration = 0.2f;
         [SerializeField] private float dashCooldown = 0.6f;
         
-        private float _originalGravity;
         private bool _isDashing;
         public bool IsMovementBlocked => _isDashing;
         public bool IsGravityBlocked => _isDashing;
@@ -60,14 +59,11 @@ namespace Player.Movement
         {
             _isDashing = true;
             
-            _originalGravity = _rb.gravityScale;
-            _rb.gravityScale = 0f;
             _rb.linearVelocityY = 0f;
             _rb.linearVelocityX = dashForce * _movementState.MovementDirection;
 
             yield return new WaitForSeconds(dashDuration);
-
-            _rb.gravityScale = _originalGravity;
+            
             _rb.linearVelocityY = _rb.linearVelocityY;
             _rb.linearVelocityX = 0f;
 

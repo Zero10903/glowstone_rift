@@ -28,7 +28,10 @@ namespace Player.Gravity
         private void Update()
         {
             if (IsGravityBlocked())
+            {
+                _rb.gravityScale = 0f;
                 return;
+            }
             
             ApplyCustomGravity();
         }
