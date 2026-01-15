@@ -3,13 +3,17 @@ using UnityEngine;
 
 namespace Player.Movement
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour, IMovementState
     {
         [SerializeField] private float movementSpeed = 5f;
+        
         private IMovementBlocker[] _movementBlockers;
-        public float MoveDirection { get; private set; }
+        
         private bool _isOnMovement;
         public bool IsOnMovement => _isOnMovement;
+        
+        private float _movementDirection;
+        public float MovementDirection => _movementDirection;
         
         private Rigidbody2D _rb;
         private PlayerInputHandler _input;
@@ -29,9 +33,8 @@ namespace Player.Movement
             if (IsMovementBlocked())
                 return;
             
-            float x = _input.MoveInput.x;
-            MoveDirection = x;
-            _rb.linearVelocityX = x * movementSpeed;
+            _movementDirection = _input.MoveInput.x;
+            _rb.linearVelocityX = _movementDirection * movementSpeed;
 
             _isOnMovement = _input.MoveInput.x != 0;
         }

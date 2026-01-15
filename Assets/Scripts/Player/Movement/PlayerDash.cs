@@ -15,15 +15,17 @@ namespace Player.Movement
         public bool IsMovementBlocked => _isDashing;
         public bool IsGravityBlocked => _isDashing;
         
+        private IMovementState _movementState;
+        
         private PlayerInputHandler _inputHandler;
         private Rigidbody2D _rb;
-        private PlayerMovement _playerMovement;
         
         private void Awake()
         {
             _inputHandler = GetComponent<PlayerInputHandler>();
             _rb = GetComponent<Rigidbody2D>();
-            _playerMovement = GetComponent<PlayerMovement>();
+            
+            _movementState = GetComponent<IMovementState>();
             
             _canDash = true;
             _isDashing = false;
@@ -41,7 +43,7 @@ namespace Player.Movement
 
         private void HandleDash()
         {
-            if (!_canDash || _isDashing || !_playerMovement.IsOnMovement)
+            if (!_canDash || _isDashing || !_movementState.IsOnMovement)
                 return;
 
             StartCoroutine(DashRoutine());
@@ -55,7 +57,7 @@ namespace Player.Movement
             _originalGravity = _rb.gravityScale;
             _rb.gravityScale = 0f;
             _rb.linearVelocityY = 0f;
-            _rb.linearVelocityX = dashForce * _playerMovement.MoveDirection;
+            _rb.linearVelocityX = dashForce * _movementState.MovementDirection;
 
             yield return new WaitForSeconds(dashDuration);
 
