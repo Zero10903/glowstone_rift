@@ -1,6 +1,6 @@
-using System;
 using UnityEngine;
 using Player.Input;
+using Utils;
 
 namespace Player.Attack
 {
@@ -20,11 +20,14 @@ namespace Player.Attack
 
         private Vector2 _lastMoveInput = Vector2.right;
         private Vector2 _saveLastMoveInput = Vector2.right;
-        private bool _canAttack = true;
+
+        private Cooldown _cooldown;
         
         void Awake()
         {
             _playerInputHandler = GetComponent<PlayerInputHandler>();
+            
+            _cooldown = new Cooldown(attackCooldown);
         }
 
         private void OnEnable()
@@ -44,19 +47,15 @@ namespace Player.Attack
 
         private void TryAttack()
         {
-            if (_canAttack == false) return;
+            if (!_cooldown.IsReady) return;
             
-            _canAttack = false;
-            
+            _cooldown.Use();
             GetDirection();
             
             HandleMeleeHitbox();
             
             // Deactivate after attack
             Invoke(nameof(DisableMeleeHitboxes), attackDuration);
-
-            // Cooldown
-            Invoke(nameof(ResetAttack), attackCooldown);
         }
 
         private void GetDirection()
@@ -101,11 +100,6 @@ namespace Player.Attack
             meleeHitboxUp.SetActive(false);
             meleeHitboxLeft.SetActive(false);
             meleeHitboxDown.SetActive(false);
-        }
-
-        private void ResetAttack()
-        {
-            _canAttack = true;
         }
         
     }
