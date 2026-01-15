@@ -355,6 +355,8 @@ GameObject:
   - component: {fileID: 323699146192520945}
   - component: {fileID: 4575947731236277104}
   - component: {fileID: 4772956787317460246}
+  - component: {fileID: 3041243625525744716}
+  - component: {fileID: 1400147167322825357}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -574,6 +576,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 813a976e-a808-49b2-99d5-994b9b260af2
     m_ActionName: 'Player/MeleeAttack[/XInputControllerWindows/buttonWest]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -5764635258174801733}
+        m_TargetAssemblyTypeName: Player.Input.PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnDashInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: dd65ec1b-22e1-422f-9cdf-b8b827766387
+    m_ActionName: 'Player/Dash[/XInputControllerWindows/rightTrigger]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -619,8 +637,6 @@ MonoBehaviour:
   jumpForce: 12
   coyoteTime: 0.1
   jumpBufferTime: 0.1
-  fallGravityMultiplier: 4.5
-  lowJumpGravityMultiplier: 4.5
 --- !u!114 &323699146192520945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -669,6 +685,35 @@ MonoBehaviour:
   meleeHitboxUp: {fileID: 1384543474678037831}
   meleeHitboxLeft: {fileID: 3233736808094684361}
   meleeHitboxDown: {fileID: 172180609577979188}
+--- !u!114 &3041243625525744716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4864994839283287405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f178f1045e9dc645966191c26c2243b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashForce: 20
+  dashDuration: 0.2
+  dashCooldown: 0.6
+--- !u!114 &1400147167322825357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4864994839283287405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e57c7b4425765d4fbbc5d2870c7c034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallGravityMultiplier: 4.5
+  lowJumpGravityMultiplier: 4.5
 --- !u!1 &6286798219243597292
 GameObject:
   m_ObjectHideFlags: 0
