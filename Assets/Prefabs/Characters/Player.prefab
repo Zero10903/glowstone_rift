@@ -679,8 +679,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105756ee661e0174d9ea4861ab09881b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 0.75
-  attackDuration: 0.2
+  attackCooldown: 0.4
+  attackDuration: 0.3
   meleeHitboxRight: {fileID: 2077556238772094776}
   meleeHitboxUp: {fileID: 1384543474678037831}
   meleeHitboxLeft: {fileID: 3233736808094684361}
