@@ -10,8 +10,10 @@ namespace Testing
         private void OnTriggerEnter2D(Collider2D other)
         {
             IDamageable damageable = other.GetComponent<IDamageable>();
+
+            Vector2 direction = (other.transform.position - transform.position).normalized;
         
-            damageable?.TakeDamage(damageAmount);
+            damageable?.TakeDamage(damageAmount, direction, gameObject);
         }
     }
 }

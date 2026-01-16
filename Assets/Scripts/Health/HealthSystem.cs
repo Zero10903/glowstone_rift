@@ -18,7 +18,7 @@ namespace Health
         public float MaxHealth => maxHealth;
 
         public event Action<float> OnHeal;
-        public event Action OnDamageTaken;
+        public event Action<DamageData> OnDamageTaken;
         public event Action<float> OnDeath;
         public event Action<float, float> OnHealthChanged;
 
@@ -48,7 +48,7 @@ namespace Health
             OnHealthChanged?.Invoke(_currentHealth, maxHealth);
         }
         
-        public virtual void TakeDamage(float damageAmount)
+        public virtual void TakeDamage(float damageAmount, Vector2 direction, GameObject source)
         {
             if (_isInvulnerable) return;
             
@@ -61,9 +61,15 @@ namespace Health
             
             // Take damage
             _currentHealth =  Mathf.Clamp(_currentHealth - damageAmount, 0, maxHealth);
+
+            DamageData damageData = new DamageData()
+            {
+                damageDirection = direction,
+                damageSource = source,
+            };
             
             // Invoke events
-            OnDamageTaken?.Invoke();
+            OnDamageTaken?.Invoke(damageData);
             OnHealthChanged?.Invoke(_currentHealth, maxHealth);
 
             // Check if the object has died
