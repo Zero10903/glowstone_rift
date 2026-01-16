@@ -18,7 +18,7 @@ namespace Health
         public float MaxHealth => maxHealth;
 
         public event Action<float> OnHeal;
-        public event Action<float> OnDamageTaken;
+        public event Action OnDamageTaken;
         public event Action<float> OnDeath;
         public event Action<float, float> OnHealthChanged;
 
@@ -63,7 +63,7 @@ namespace Health
             _currentHealth =  Mathf.Clamp(_currentHealth - damageAmount, 0, maxHealth);
             
             // Invoke events
-            OnDamageTaken?.Invoke(_currentHealth);
+            OnDamageTaken?.Invoke();
             OnHealthChanged?.Invoke(_currentHealth, maxHealth);
 
             // Check if the object has died
