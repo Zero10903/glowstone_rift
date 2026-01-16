@@ -5,9 +5,14 @@ namespace Health
 {
     public class HealthDamageFeedback : MonoBehaviour
     {
-        [Header("Damage Feedback Settings")]
+        [Header("Flashback Feedback Settings")]
         [SerializeField] private Color color = Color.white;
         [SerializeField] private float flashDuration = 0.1f;
+
+        [Header("Hit Stop Feedback Settings")] [SerializeField]
+        private bool isHitStopActive = true;
+        [SerializeField] private float hitStopDuration = 0.03f;
+        [SerializeField] private float hitStopTimeScale = 0f;
         
         private Color _defaultColor;
         private float _damageAmount;
@@ -35,14 +40,23 @@ namespace Health
 
         private void HandleFeedback()
         {
-            StartCoroutine(ApplyFlash());
+            StartCoroutine(FlashRoutine());
+            StartCoroutine(HitStopRoutine());
         }
 
-        private IEnumerator ApplyFlash()
+        private IEnumerator FlashRoutine()
         {
             _spriteRenderer.color = color;
             yield return new WaitForSeconds(flashDuration);
             _spriteRenderer.color = _defaultColor;
+        }
+
+        private IEnumerator HitStopRoutine()
+        {
+            float originalTimeScale = Time.timeScale;
+            Time.timeScale = hitStopTimeScale;
+            yield return new WaitForSecondsRealtime(hitStopDuration);
+            Time.timeScale = originalTimeScale;
         }
     }
 }
