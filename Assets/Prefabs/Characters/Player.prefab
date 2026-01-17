@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4907293627919702205}
   - component: {fileID: 7162881835228883169}
+  - component: {fileID: 4026325087218805985}
   m_Layer: 7
   m_Name: HitboxDown
   m_TagString: Untagged
@@ -84,6 +85,18 @@ PolygonCollider2D:
       - {x: 0.58778536, y: -0.80901694}
       - {x: 1.4510565, y: 1.3090172}
   m_UseDelaunayMesh: 0
+--- !u!114 &4026325087218805985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172180609577979188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db8d633f4ec5124b8bbcb068eb4e8ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1384543474678037831
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8321303259452743208}
   - component: {fileID: 5475920169007518364}
+  - component: {fileID: 3836861920740173645}
   m_Layer: 7
   m_Name: HitboxUp
   m_TagString: Untagged
@@ -168,6 +182,18 @@ PolygonCollider2D:
       - {x: 0.58778536, y: -0.80901694}
       - {x: 1.4510565, y: 1.3090172}
   m_UseDelaunayMesh: 0
+--- !u!114 &3836861920740173645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384543474678037831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db8d633f4ec5124b8bbcb068eb4e8ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2077556238772094776
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1863615890060268608}
   - component: {fileID: 2593984687918247148}
+  - component: {fileID: 8392884959438058846}
   m_Layer: 7
   m_Name: HitboxRight
   m_TagString: Untagged
@@ -252,6 +279,18 @@ PolygonCollider2D:
       - {x: 0.58778536, y: -0.80901694}
       - {x: 1.4510565, y: 1.3090172}
   m_UseDelaunayMesh: 0
+--- !u!114 &8392884959438058846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077556238772094776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db8d633f4ec5124b8bbcb068eb4e8ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3233736808094684361
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,6 +301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2788504937716297668}
   - component: {fileID: 6024525064776634246}
+  - component: {fileID: 1504426046015625246}
   m_Layer: 7
   m_Name: HitboxLeft
   m_TagString: Untagged
@@ -336,6 +376,18 @@ PolygonCollider2D:
       - {x: 0.58778536, y: -0.80901694}
       - {x: 1.4510565, y: 1.3090172}
   m_UseDelaunayMesh: 0
+--- !u!114 &1504426046015625246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3233736808094684361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db8d633f4ec5124b8bbcb068eb4e8ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4864994839283287405
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,6 +721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 0.4
   attackDuration: 0.3
+  baseDamage: 10
   meleeHitboxRight: {fileID: 2077556238772094776}
   meleeHitboxUp: {fileID: 1384543474678037831}
   meleeHitboxLeft: {fileID: 3233736808094684361}
@@ -733,6 +786,9 @@ MonoBehaviour:
   isHitStopActive: 1
   hitStopDuration: 0.06
   hitStopTimeScale: 0
+  knockbackForce: 10
+  knockbackForceMode: 1
+  knockbackDuration: 0.1
 --- !u!1 &6286798219243597292
 GameObject:
   m_ObjectHideFlags: 0
