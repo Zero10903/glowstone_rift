@@ -11,6 +11,8 @@ namespace Player.Attack
         [Header("Melee Attack Settings")]
         [SerializeField] private float attackCooldown = 1f;
         [SerializeField] private float attackDuration = 0.2f;
+        [SerializeField] private float baseDamage = 10f;
+        public float BaseDamage => baseDamage;
         
         [Header("Melee Attack Hitbox")]
         [SerializeField] private GameObject meleeHitboxRight;
